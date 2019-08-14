@@ -1,0 +1,1 @@
+gdb -x debug_d8.gdb
