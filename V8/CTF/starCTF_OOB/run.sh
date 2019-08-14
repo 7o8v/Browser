@@ -1,1 +1,1 @@
-../v8/out.gn/x64.release/d8  --shell ./poc.js --allow-natives-syntax
+../v8/out.gn/x64.release/d8  --shell ./exp.js --allow-natives-syntax

