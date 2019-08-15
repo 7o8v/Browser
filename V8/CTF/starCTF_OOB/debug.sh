@@ -1,1 +1,1 @@
-gdb -x debug_d8.gdb
+gdb -x script_debug.gdb
